@@ -195,155 +195,162 @@ class OrderTile extends StatelessWidget {
           color: progressColor.withOpacity(0.08),
           border: Border.all(color: Colors.black, width: 2),
           borderRadius: const BorderRadius.all(Radius.circular(10))),
-      child: Column(
+      child: Stack(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "₹ $amount",
-                style: const TextStyle(color: Colors.black, fontSize: 20),
-              ),
-              Container(
-                height: 20,
-                width: 75,
-                decoration: const BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: Center(
-                  child: Text(
-                    dropTime == null ? "In Transit" : "Delivered",
-                    style: const TextStyle(color: Colors.white, fontSize: 10),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                          height: 12,
-                          width: 12,
-                          decoration: BoxDecoration(
-                              color: pickUpTime == null
-                                  ? Colors.grey
-                                  : Colors.black,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)))),
-                      Container(
-                          height: 60,
-                          width: 2,
-                          decoration: BoxDecoration(
-                            color:
-                                pickUpTime == null ? Colors.grey : Colors.black,
-                          )),
-                      Container(
-                        height: 12,
-                        width: 12,
-                        color: dropTime == null ? Colors.grey : Colors.black,
-                      ),
-                    ],
+                  Text(
+                    "₹ $amount",
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
                   ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 10,
+                  Container(
+                    height: 20,
+                    width: 75,
+                    decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Center(
+                      child: Text(
+                        dropTime == null ? "In Transit" : "Delivered",
+                        style: const TextStyle(color: Colors.white, fontSize: 10),
                       ),
-                      SizedBox(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              pickUpLocation == null
-                                  ? "Pick up Location"
-                                  : pickUpLocation!,
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              pickUpTime == null ? "pickup time" : pickUpTime!,
-                              style: const TextStyle(
-                                  color: Colors.grey, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 45,
-                      ),
-                      SizedBox(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              dropLocation == null
-                                  ? "Drop Location"
-                                  : dropLocation!,
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              dropTime == null ? "drop time" : dropTime!,
-                              style: const TextStyle(
-                                  color: Colors.grey, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
-              Container(
-                height: 100,
-                width: 100,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      height: 75,
-                      width: 75,
-                      child: CircularProgressIndicator(
-                        backgroundColor: Colors.black12,
-                        color: progressColor,
-                        value: distanceCovered,
-                      ),
-                    ),
-                    dropTime == null
-                        ? SizedBox(
-                            height: 75,
-                            width: 75,
-                            child: Lottie.asset('assets/truck_moving.json',),
-                          )
-                        : SizedBox(
-                            height: 75,
-                            width: 75,
-                            child: Lottie.asset('assets/truck_moving.json',animate: false),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                              height: 12,
+                              width: 12,
+                              decoration: BoxDecoration(
+                                  color: pickUpTime == null
+                                      ? Colors.grey
+                                      : Colors.black,
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(10)))),
+                          Container(
+                              height: 60,
+                              width: 2,
+                              decoration: BoxDecoration(
+                                color:
+                                    pickUpTime == null ? Colors.grey : Colors.black,
+                              )),
+                          Container(
+                            height: 12,
+                            width: 12,
+                            color: dropTime == null ? Colors.grey : Colors.black,
                           ),
-                  ],
-                ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  pickUpLocation == null
+                                      ? "Pick up Location"
+                                      : pickUpLocation!,
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  pickUpTime == null ? "pickup time" : pickUpTime!,
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 45,
+                          ),
+                          SizedBox(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  dropLocation == null
+                                      ? "Drop Location"
+                                      : dropLocation!,
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  dropTime == null ? "drop time" : dropTime!,
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SizedBox(
+                          height: 75,
+                          width: 75,
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.black12,
+                            color: progressColor,
+                            value: distanceCovered,
+                          ),
+                        ),
+                        dropTime == null
+                            ? SizedBox(
+                                height: 75,
+                                width: 75,
+                                child: Lottie.asset('assets/truck_moving.json',),
+                              )
+                            : SizedBox(
+                                height: 75,
+                                width: 75,
+                                child: Lottie.asset('assets/truck_moving.json',animate: false),
+                              ),
+                      ],
+                    ),
+                  )
+                ],
               )
             ],
-          )
+          ),
+          dropTime == null?const SizedBox():SizedBox(
+            child: Image.asset("assets/delivered_banner.png"),
+          ),
         ],
       ),
     );
