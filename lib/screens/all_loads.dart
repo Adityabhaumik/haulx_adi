@@ -106,6 +106,7 @@ class OngoingLoads extends StatelessWidget {
               dropLocation: inTransitData[index][2],
               pickUpTime: inTransitData[index][3],
               dropTime: inTransitData[index][4],
+              distanceCovered: inTransitData[index][5],
             ),
           );
         },
@@ -145,6 +146,7 @@ class DeliveredLoads extends StatelessWidget {
               dropLocation: deliveredData[index][2],
               pickUpTime: deliveredData[index][3],
               dropTime: deliveredData[index][4],
+              distanceCovered: deliveredData[index][5],
             ),
           );
         },
@@ -161,6 +163,7 @@ class OrderTile extends StatelessWidget {
     this.dropLocation,
     this.pickUpTime,
     this.dropTime,
+    required this.distanceCovered,
   }) : super(key: key);
 
   final num amount;
@@ -168,10 +171,19 @@ class OrderTile extends StatelessWidget {
   final String? dropLocation;
   final String? pickUpTime;
   final String? dropTime;
+  final double distanceCovered;
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    Color progressColor = Colors.orange;
+    if (distanceCovered > 0.1 && distanceCovered < 0.5) {
+      progressColor = Colors.greenAccent;
+    } else if (distanceCovered >= 0.5 && distanceCovered < 0.8) {
+      progressColor = Colors.green;
+    } else if(distanceCovered>=0.8){
+      progressColor = Colors.blueAccent;
+    }
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 2, left: 15, right: 15),
       margin: const EdgeInsets.only(
@@ -180,7 +192,7 @@ class OrderTile extends StatelessWidget {
       height: 180,
       width: screenSize.width,
       decoration: BoxDecoration(
-          color: Colors.transparent,
+          color: progressColor.withOpacity(0.08),
           border: Border.all(color: Colors.black, width: 2),
           borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Column(
@@ -301,21 +313,35 @@ class OrderTile extends StatelessWidget {
                   ),
                 ],
               ),
-              dropTime == null
-                  ? SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: Lottie.asset('assets/truck_moving.json'),
-                    )
-                  : const SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: Icon(
-                        Icons.local_shipping_outlined,
-                        size: 42,
-                        color: Colors.orange,
+              Container(
+                height: 100,
+                width: 100,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      height: 75,
+                      width: 75,
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.black12,
+                        color: progressColor,
+                        value: distanceCovered,
                       ),
-                    )
+                    ),
+                    dropTime == null
+                        ? SizedBox(
+                            height: 75,
+                            width: 75,
+                            child: Lottie.asset('assets/truck_moving.json',),
+                          )
+                        : SizedBox(
+                            height: 75,
+                            width: 75,
+                            child: Lottie.asset('assets/truck_moving.json',animate: false),
+                          ),
+                  ],
+                ),
+              )
             ],
           )
         ],
