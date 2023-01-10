@@ -218,7 +218,7 @@ class OrderTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 2, left: 10, right: 10),
       margin: const EdgeInsets.only(top: 10, bottom: 2, left: 10, right: 10),
-      height: 140,
+      height: screenSize.height*0.19,
       width: screenSize.width,
       decoration: const BoxDecoration(
         boxShadow: [
