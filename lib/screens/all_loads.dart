@@ -273,17 +273,15 @@ class OrderTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const SizedBox(
-                            height: 15,
+                            height: 10,
                           ),
-                          Container(
-                              height: 12,
-                              width: 12,
-                              decoration: BoxDecoration(
-                                  color: pickUpTime == null
-                                      ? Colors.grey
-                                      : Colors.black,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)))),
+                          Icon(
+                            Icons.location_on,
+                            color:
+                            pickUpTime == null
+                                ? Colors.grey
+                                : Colors.black,
+                          ),
                           Container(
                               height: 20,
                               width: 2,
@@ -300,10 +298,11 @@ class OrderTile extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        width: 15,
+                        width: 8,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const SizedBox(
                             height: 10,
@@ -333,7 +332,7 @@ class OrderTile extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: 10,
+                            height: 20,
                           ),
                           SizedBox(
                             child: Column(
